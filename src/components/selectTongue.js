@@ -105,10 +105,10 @@ class TongueForm extends React.Component {
                     </label>  
                     <label>舌质颜色  
                         <select id="4" onChange={this.onChange}>  
-                            <option value="0">"舌淡白"</option>   
-                            <option value="1">"舌淡红"</option>  
-                            <option value="2">"舌红"</option>   
-                            <option value="3">"舌暗红"</option>  
+                            <option value="0">"舌暗红"</option>   
+                            <option value="1">"舌淡白"</option>  
+                            <option value="2">"舌淡红"</option>   
+                            <option value="3">"舌红"</option>  
                             <option value="4">"舌深红（舌紫）"</option> 
                         </select>  
                     </label>  

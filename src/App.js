@@ -14,9 +14,10 @@ class App extends Component {
       this.state = {
         face: { ...defaultFaceAnswers },
         tongue: { ...defaultTongueAnswers },
-        answers: [{'answer': ['B'], 'id': '1'}, {'answer': ['C'], 'id': '2'}],
+        answers: [{'answer': ['B'], 'id': '1'}, {'answer': ['D'], 'id': '2'}],
       };
       this.onAnswerChange = this.onAnswerChange.bind(this);
+      this.postAnswer = this.postAnswer.bind(this);
   } 
 
   postAnswer() {
@@ -30,7 +31,6 @@ class App extends Component {
   }
 
   onAnswerChange(value) {
-    console.log(value);
     this.setState({
       answers: {
         ...this.state.answers,
@@ -61,7 +61,6 @@ class App extends Component {
   }
 
   render() {
-    console.log("app:", this.state);
     return (
       <div className="App">
         <header className="App-header">
@@ -83,7 +82,7 @@ class App extends Component {
         </p>
         <Question onChange={v => this.onAnswerChange(v)} />
         <br/>
-        <button type="submit" onClick={ this.postAnswer() }>Submit</button>
+        <button type="submit" onClick={ this.postAnswer }>Submit</button>
       </div>
     );
   }

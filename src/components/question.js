@@ -64,7 +64,6 @@ export default class Question extends React.Component {
         var boxes = document.getElementsByName(name);
         for(var i=0; i<boxes.length; i++){
                 if(boxes[i].checked){
-                        console.log(boxes[i].value);
                         answers.push(boxes[i].value);
                 }    
         }
