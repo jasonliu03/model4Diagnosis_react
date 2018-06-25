@@ -1,5 +1,6 @@
 import React from 'react';
 import { optionsToLabelMapper } from '../utils';
+import { Button, DropdownButton, MenuItem, ButtonToolbar } from 'react-bootstrap';
  
 const options = [
   {
@@ -27,65 +28,64 @@ export const defaultFaceAnswers = {
   lipColor: { value: '0', label: '淡白' }
 };
 
+const FaceLabelMapper = optionsToLabelMapper(options);
+
 class FaceForm extends React.Component {
     constructor(props) {  
       super(props);
-      this.handleChange = this.handleChange.bind(this);  
-      this.onChange = this.onChange.bind(this);  
+      // this.handleChange = this.handleChange.bind(this);  
+      // this.onChangeFaceColor = this.onChangeFaceColor.bind(this);  
     }   
 
     handleChange(id, v) {
         if (this.props.onChange) {
-          const change = { [id]: { value: v }};
+          const change = { [id]: { value: v, label:FaceLabelMapper[id][v] }};
           this.props.onChange(change);
         }
     }
 
-    onChange(event) {  
-        switch (event.target.id) {
-            case "0":
-                this.handleChange("faceColor", event.target.value);
-                break;
-            case "1":
-                this.handleChange("faceGloss", event.target.value);
-                break;
-            case "2":
-                this.handleChange("lipColor", event.target.value);
-                break;
-            default:
-                break;
-        }
+    onChangeFaceColor(eventKey, event) {  
+        this.handleChange("faceColor", eventKey);
     }  
+
+    onChangeFaceGloss(eventKey, event) {  
+        this.handleChange("faceGloss", eventKey);
+    }  
+
+    onChangeLipColor(eventKey, event) {  
+        this.handleChange("lipColor", eventKey);
+    } 
+
 
     render() {  
         return (  
                 <div>  
-                    <label>面色：  
-                        <select id="0" defaultValue={this.selectedIndex0} onChange={this.onChange}> 
-                            <option value="0">"面白"</option>   
-                            <option value="1">"面黑"</option>   
-                            <option value="2">"面红"</option>   
-                            <option value="3">"面黄"</option>   
-                            <option value="4">"面青"</option>   
-                            <option value="5">"正常"</option>  
-                        </select>  
+                    <label>面色
+                        <DropdownButton bsStyle={'Primary'.toLowerCase()} title={this.props['face']['faceColor']['label']} key="0" id="0" onSelect={(eventKey, event) => {this.onChangeFaceColor(eventKey, event)}}>
+                          <MenuItem eventKey="0">面白</MenuItem>
+                          <MenuItem eventKey="1">面黑</MenuItem>
+                          <MenuItem eventKey="2">面红</MenuItem>
+                          <MenuItem eventKey="3">面黄</MenuItem>
+                          <MenuItem eventKey="4">面青</MenuItem>
+                          <MenuItem eventKey="5">正常</MenuItem>
+                        </DropdownButton> 
                     </label>  
-                    <label>面部光泽：  
-                        <select id="1" defaultValue={this.selectedIndex1} onChange={this.onChange}>  
-                            <option value="0">"有光泽"</option>   
-                            <option value="1">"少光泽"</option>   
-                            <option value="2">"无光泽"</option>  
-                        </select>  
+                    <label>面部光泽： 
+                        <DropdownButton bsStyle={'Primary'.toLowerCase()} title={this.props['face']['faceGloss']['label']} key="1" id="1" onSelect={(eventKey, event) => {this.onChangeFaceGloss(eventKey, event)}}>
+                          <MenuItem eventKey="0">有光泽</MenuItem>
+                          <MenuItem eventKey="1">少光泽</MenuItem>
+                          <MenuItem eventKey="2">无光泽</MenuItem>
+                        </DropdownButton>  
                     </label>  
                     <label>唇色：  
-                        <select id="2" defaultValue={this.selectedIndex2} onChange={this.onChange}>  
-                            <option value="0">"淡白"</option>   
-                            <option value="1">"淡红"</option>   
-                            <option value="2">"红"</option>   
-                            <option value="3">"暗红"</option>   
-                            <option value="4">"紫"</option>   
-                        </select>  
-                    </label>  
+                        <DropdownButton bsStyle={'Primary'.toLowerCase()} title={this.props['face']['lipColor']['label']} key="2" id="2" onSelect={(eventKey, event) => {this.onChangeLipColor(eventKey, event)}}>
+                          <MenuItem eventKey="0">淡白</MenuItem>
+                          <MenuItem eventKey="1">淡白</MenuItem>
+                          <MenuItem eventKey="2">红</MenuItem>
+                          <MenuItem eventKey="3">暗红</MenuItem>
+                          <MenuItem eventKey="4">紫</MenuItem>
+                        </DropdownButton>  
+                    </label> 
                 </div>  
         )  
     }  

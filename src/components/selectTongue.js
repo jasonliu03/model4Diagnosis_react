@@ -1,4 +1,6 @@
 import React from 'react';
+import { optionsToLabelMapper } from '../utils';
+import { Button, DropdownButton, MenuItem, ButtonToolbar } from 'react-bootstrap';
  
 const options = [
   {
@@ -40,78 +42,105 @@ export const defaultTongueAnswers = {
   tongueNatureColor: { value: '0', label: '舌暗红' }
 };
 
+const TongueLabelMapper = optionsToLabelMapper(options);
+
 class TongueForm extends React.Component {  
     constructor(props) {  
         super(props); 
-        this.handleChange = this.handleChange.bind(this);  
-        this.onChange = this.onChange.bind(this);  
+        // this.handleChange = this.handleChange.bind(this);  
+        // this.onChange = this.onChange.bind(this); 
+        this.onChangeTongueCrack = this.onChangeTongueCrack.bind(this); 
+        this.onChangeTongueFatThin = this.onChangeTongueFatThin.bind(this); 
+        this.onChangeTongueCoatThickness = this.onChangeTongueCoatThickness.bind(this); 
+        this.onChangeTongueCoatColor = this.onChangeTongueCoatColor.bind(this); 
+        this.onChangeTongueNatureColor = this.onChangeTongueNatureColor.bind(this); 
     }  
 
     handleChange(id, v) {
         if (this.props.onChange) {
-          const change = { [id]: { value: v }};
+          const change = { [id]: { value: v, label: TongueLabelMapper[id][v] }};
           this.props.onChange(change);
         }
     }
 
-    onChange(event) {  
-        switch (event.target.id) {
-            case "0":
-                this.handleChange("tongueCrack", event.target.value);
-                break;
-            case "1":
-                this.handleChange("tongueFatThin", event.target.value);
-                break;
-            case "2":
-                this.handleChange("tongueCoatThickness", event.target.value);
-                break;
-            case "3":
-                this.handleChange("tongueCoatColor", event.target.value);
-                break;
-            case "4":
-                this.handleChange("tongueNatureColor", event.target.value);
-                break;
-            default:
-                break;
-        }
+    // onChange(event) {  
+    //     switch (event.target.id) {
+    //         case "0":
+    //             this.handleChange("tongueCrack", event.target.value);
+    //             break;
+    //         case "1":
+    //             this.handleChange("tongueFatThin", event.target.value);
+    //             break;
+    //         case "2":
+    //             this.handleChange("tongueCoatThickness", event.target.value);
+    //             break;
+    //         case "3":
+    //             this.handleChange("tongueCoatColor", event.target.value);
+    //             break;
+    //         case "4":
+    //             this.handleChange("tongueNatureColor", event.target.value);
+    //             break;
+    //         default:
+    //             break;
+    //     }
+    // }  
+
+    onChangeTongueCrack(eventKey, event) {  
+        this.handleChange("tongueCrack", eventKey);
     }  
+
+    onChangeTongueFatThin(eventKey, event) {  
+        this.handleChange("tongueFatThin", eventKey);
+    }  
+    
+    onChangeTongueCoatThickness(eventKey, event) {  
+        this.handleChange("tongueCoatThickness", eventKey);
+    } 
+    
+    onChangeTongueCoatColor(eventKey, event) {  
+        this.handleChange("tongueCoatColor", eventKey);
+    } 
+    
+    onChangeTongueNatureColor(eventKey, event) {  
+        this.handleChange("tongueNatureColor", eventKey);
+    } 
 
     render() {  
         return (  
                 <div>  
-                    <label>舌裂纹：  
-                        <select id="0" onChange={this.onChange}>  
-                            <option value="0">"未检测到裂纹"</option>   
-                            <option value="1">"成功检测到裂纹"</option> 
-                        </select>  
-                    </label>  
-                    <label>舌胖瘦：  
-                        <select id="1" onChange={this.onChange}>  
-                            <option value="0">"正常"</option>   
-                            <option value="1">"胖舌"</option>
-                        </select>  
-                    </label>  
-                    <label>舌苔厚薄：  
-                        <select id="2" onChange={this.onChange}>  
-                            <option value="0">"薄"</option>   
-                            <option value="1">"厚"</option>  
-                        </select>  
-                    </label>  
-                    <label>舌苔颜色  
-                        <select id="3" onChange={this.onChange}>  
-                            <option value="0">"苔白"</option>   
-                            <option value="1">"苔黄"</option>  
-                        </select>  
-                    </label>  
-                    <label>舌质颜色  
-                        <select id="4" onChange={this.onChange}>  
-                            <option value="0">"舌暗红"</option>   
-                            <option value="1">"舌淡白"</option>  
-                            <option value="2">"舌淡红"</option>   
-                            <option value="3">"舌红"</option>  
-                            <option value="4">"舌深红（舌紫）"</option> 
-                        </select>  
-                    </label>  
+                    <label>舌裂纹：
+                        <DropdownButton bsStyle={'Primary'.toLowerCase()} title={this.props['tongue']['tongueCrack']['label']} id="0" onSelect={this.onChangeTongueCrack}>
+                          <MenuItem eventKey="0">未检测到裂纹</MenuItem>
+                          <MenuItem eventKey="1">成功检测到裂纹</MenuItem>
+                        </DropdownButton> 
+                    </label>   
+                    <label>舌胖瘦：
+                        <DropdownButton bsStyle={'Primary'.toLowerCase()} title={this.props['tongue']['tongueFatThin']['label']} id="1" onSelect={this.onChangeTongueFatThin}>
+                          <MenuItem eventKey="0">正常</MenuItem>
+                          <MenuItem eventKey="1">胖舌</MenuItem>
+                        </DropdownButton> 
+                    </label>    
+                    <label>舌苔厚薄：
+                        <DropdownButton bsStyle={'Primary'.toLowerCase()} title={this.props['tongue']['tongueCoatThickness']['label']} id="1" onSelect={this.onChangeTongueCoatThickness}>
+                          <MenuItem eventKey="0">薄</MenuItem>
+                          <MenuItem eventKey="1">厚</MenuItem>
+                        </DropdownButton> 
+                    </label>    
+                    <label>舌苔颜色：
+                        <DropdownButton bsStyle={'Primary'.toLowerCase()} title={this.props['tongue']['tongueCoatColor']['label']} id="1" onSelect={this.onChangeTongueCoatColor}>
+                          <MenuItem eventKey="0">苔白</MenuItem>
+                          <MenuItem eventKey="1">苔黄</MenuItem>
+                        </DropdownButton> 
+                    </label>    
+                    <label>舌质颜色：
+                        <DropdownButton bsStyle={'Primary'.toLowerCase()} title={this.props['tongue']['tongueNatureColor']['label']} id="1" onSelect={this.onChangeTongueNatureColor}>
+                          <MenuItem eventKey="0">舌暗红</MenuItem>
+                          <MenuItem eventKey="1">舌淡白</MenuItem>
+                          <MenuItem eventKey="2">舌淡红</MenuItem>
+                          <MenuItem eventKey="3">舌红</MenuItem>
+                          <MenuItem eventKey="4">舌深红（舌紫）</MenuItem>
+                        </DropdownButton> 
+                    </label>
                 </div>  
         )  
     }  

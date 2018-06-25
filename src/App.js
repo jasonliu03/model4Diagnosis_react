@@ -70,12 +70,12 @@ class App extends Component {
         <p className="App-intro">
           Face
         </p>
-        <Face onChange={v => this.onFaceOrTongueChange('face', v)} />
+        <Face onChange={v => this.onFaceOrTongueChange('face', v)} { ...this.state } />
         <br/>
         <p className="App-intro">
           Tongue
         </p>
-        <Tongue onChange={v => this.onFaceOrTongueChange('tongue', v)} />
+        <Tongue onChange={v => this.onFaceOrTongueChange('tongue', v)} { ...this.state } />
         <br/>
         <p className="App-intro">
           Question
