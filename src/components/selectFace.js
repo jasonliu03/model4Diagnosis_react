@@ -1,6 +1,6 @@
 import React from 'react';
 import { optionsToLabelMapper } from '../utils';
-import { Button, DropdownButton, MenuItem, ButtonToolbar } from 'react-bootstrap';
+import { Label, DropdownButton, MenuItem } from 'react-bootstrap';
  
 const options = [
   {
@@ -60,7 +60,7 @@ class FaceForm extends React.Component {
     render() {  
         return (  
                 <div>  
-                    <label>面色
+                    <Label bsStyle="success">面色:</Label>
                         <DropdownButton bsStyle={'Primary'.toLowerCase()} title={this.props['face']['faceColor']['label']} key="0" id="0" onSelect={(eventKey, event) => {this.onChangeFaceColor(eventKey, event)}}>
                           <MenuItem eventKey="0">面白</MenuItem>
                           <MenuItem eventKey="1">面黑</MenuItem>
@@ -69,15 +69,13 @@ class FaceForm extends React.Component {
                           <MenuItem eventKey="4">面青</MenuItem>
                           <MenuItem eventKey="5">正常</MenuItem>
                         </DropdownButton> 
-                    </label>  
-                    <label>面部光泽： 
+                    <Label bsStyle="success">面部光泽：</Label> 
                         <DropdownButton bsStyle={'Primary'.toLowerCase()} title={this.props['face']['faceGloss']['label']} key="1" id="1" onSelect={(eventKey, event) => {this.onChangeFaceGloss(eventKey, event)}}>
                           <MenuItem eventKey="0">有光泽</MenuItem>
                           <MenuItem eventKey="1">少光泽</MenuItem>
                           <MenuItem eventKey="2">无光泽</MenuItem>
                         </DropdownButton>  
-                    </label>  
-                    <label>唇色：  
+                    <Label bsStyle="success">唇色：</Label>  
                         <DropdownButton bsStyle={'Primary'.toLowerCase()} title={this.props['face']['lipColor']['label']} key="2" id="2" onSelect={(eventKey, event) => {this.onChangeLipColor(eventKey, event)}}>
                           <MenuItem eventKey="0">淡白</MenuItem>
                           <MenuItem eventKey="1">淡白</MenuItem>
@@ -85,7 +83,6 @@ class FaceForm extends React.Component {
                           <MenuItem eventKey="3">暗红</MenuItem>
                           <MenuItem eventKey="4">紫</MenuItem>
                         </DropdownButton>  
-                    </label> 
                 </div>  
         )  
     }  

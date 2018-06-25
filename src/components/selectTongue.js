@@ -1,6 +1,6 @@
 import React from 'react';
 import { optionsToLabelMapper } from '../utils';
-import { Button, DropdownButton, MenuItem, ButtonToolbar } from 'react-bootstrap';
+import { Label, DropdownButton, MenuItem } from 'react-bootstrap';
  
 const options = [
   {
@@ -108,31 +108,27 @@ class TongueForm extends React.Component {
     render() {  
         return (  
                 <div>  
-                    <label>舌裂纹：
+                    <Label bsStyle="success">舌裂纹：</Label> 
                         <DropdownButton bsStyle={'Primary'.toLowerCase()} title={this.props['tongue']['tongueCrack']['label']} id="0" onSelect={this.onChangeTongueCrack}>
                           <MenuItem eventKey="0">未检测到裂纹</MenuItem>
                           <MenuItem eventKey="1">成功检测到裂纹</MenuItem>
                         </DropdownButton> 
-                    </label>   
-                    <label>舌胖瘦：
+                    <Label bsStyle="success">舌胖瘦：</Label> 
                         <DropdownButton bsStyle={'Primary'.toLowerCase()} title={this.props['tongue']['tongueFatThin']['label']} id="1" onSelect={this.onChangeTongueFatThin}>
                           <MenuItem eventKey="0">正常</MenuItem>
                           <MenuItem eventKey="1">胖舌</MenuItem>
-                        </DropdownButton> 
-                    </label>    
-                    <label>舌苔厚薄：
+                        </DropdownButton>    
+                    <Label bsStyle="success">舌苔厚薄：</Label> 
                         <DropdownButton bsStyle={'Primary'.toLowerCase()} title={this.props['tongue']['tongueCoatThickness']['label']} id="1" onSelect={this.onChangeTongueCoatThickness}>
                           <MenuItem eventKey="0">薄</MenuItem>
                           <MenuItem eventKey="1">厚</MenuItem>
                         </DropdownButton> 
-                    </label>    
-                    <label>舌苔颜色：
+                    <Label bsStyle="success">舌苔颜色：</Label> 
                         <DropdownButton bsStyle={'Primary'.toLowerCase()} title={this.props['tongue']['tongueCoatColor']['label']} id="1" onSelect={this.onChangeTongueCoatColor}>
                           <MenuItem eventKey="0">苔白</MenuItem>
                           <MenuItem eventKey="1">苔黄</MenuItem>
                         </DropdownButton> 
-                    </label>    
-                    <label>舌质颜色：
+                    <Label bsStyle="success">舌质颜色：</Label> 
                         <DropdownButton bsStyle={'Primary'.toLowerCase()} title={this.props['tongue']['tongueNatureColor']['label']} id="1" onSelect={this.onChangeTongueNatureColor}>
                           <MenuItem eventKey="0">舌暗红</MenuItem>
                           <MenuItem eventKey="1">舌淡白</MenuItem>
@@ -140,7 +136,6 @@ class TongueForm extends React.Component {
                           <MenuItem eventKey="3">舌红</MenuItem>
                           <MenuItem eventKey="4">舌深红（舌紫）</MenuItem>
                         </DropdownButton> 
-                    </label>
                 </div>  
         )  
     }  
